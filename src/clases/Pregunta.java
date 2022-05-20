@@ -26,7 +26,7 @@ public class Pregunta {
 	public int getIdCategoria() {
 		return idCategoria;
 	}
-	public int IdDicultad(){
+	public int getIdDicultad(){
 		return idDificultad;
 	}
 	//metodos setter
