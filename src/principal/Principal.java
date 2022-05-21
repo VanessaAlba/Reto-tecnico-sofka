@@ -11,6 +11,7 @@ import aplicacionFunciones.JugadorBD;
 import aplicacionFunciones.PreguntaBD;
 import aplicacionFunciones.PremioBD;
 import aplicacionFunciones.RespuestaBD;
+import aplicacionFunciones.ResumenBD;
 import aplicacionFunciones.RondaHistorialBD;
 import clases.Categoria;
 import clases.Dificultad;
@@ -19,6 +20,7 @@ import clases.Jugador;
 import clases.Pregunta;
 import clases.Premio;
 import clases.Respuesta;
+import clases.Resumen;
 import clases.RondaHistorial;
 
 public class Principal {
@@ -96,9 +98,7 @@ public class Principal {
 				break;
 			// Resumen
 			case 2:
-				
-				
-
+				ListarResumen();
 				break;
 			// Preguntas
 
@@ -411,5 +411,16 @@ public class Principal {
 		HistorialBD ultima = new HistorialBD();
 		UltPartida = ultima.IDPartida();
 		return UltPartida;
+	}
+	public static void ListarResumen () {
+		ArrayList<Resumen> listado; 
+		ResumenBD listar = new ResumenBD();
+		listado= listar.ListarDatos();
+		for (int i=0; i<listado.size();i++) {
+			System.out.print(listado.get(i).getNombreJugador()+" \t");
+			System.out.print(listado.get(i).getAcumuladoJugador()+" \t");
+			System.out.println(listado.get(i).getRonda()+" \t");
+		}
+	
 	}
 }
