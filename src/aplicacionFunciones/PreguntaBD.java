@@ -109,5 +109,27 @@ public class PreguntaBD extends PreguntaAbstract{
 		abrirConexion.desconectar();
 		return dato;
 	}
+
+
+	public Pregunta PregCategoriaDif(int idCategoria, int idDificultad) {
+		conectarBDaJava abrirConexion = new conectarBDaJava();
+		abrirConexion.conectarse();
+		try {
+			PreparedStatement sentencia = (PreparedStatement) abrirConexion.getConnection().prepareStatement
+					("SELECT * FROM pregunta WHERE IdDificultad= "+idDificultad+" AND IdCategoria= "+idCategoria);
+			ResultSet resultado = (ResultSet) sentencia.executeQuery();
+			//sentencia.setInt(1, idPregunta);
+			resultado.next();
+			dato = new Pregunta(resultado.getInt("IdPregunta"),resultado.getString("Enunciado"),
+							resultado.getInt("IdCategoria"),resultado.getInt("IdDificultad"));
+			
+			sentencia.execute();
+			sentencia.close();
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		abrirConexion.desconectar();
+		return dato;
+	}
 	
 }

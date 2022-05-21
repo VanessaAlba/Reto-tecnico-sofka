@@ -12,10 +12,10 @@ public class Dificultad {
 		
 	}
 	//metodo get
-	public int IdDicultad(){
+	public int getIdDicultad(){
 		return idDificultad;
 	}
-	public String NomDificultad() {
+	public String getNomDificultad() {
 		return nomDificultad;
 	}
 	//metodo set
