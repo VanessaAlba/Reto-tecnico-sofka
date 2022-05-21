@@ -11,6 +11,7 @@ import ConexionBD.conectarBDaJava;
 
 public class PreguntaBD extends PreguntaAbstract{
 	static ArrayList<Pregunta> mispreguntas;
+	static Pregunta dato;
 
 	public void InsertarPregunta(Pregunta InsPregunta) {
 		conectarBDaJava abrirConexion = new conectarBDaJava();
@@ -22,13 +23,13 @@ public class PreguntaBD extends PreguntaAbstract{
 			sentencia.setInt(2, InsPregunta.getIdCategoria() );
 			sentencia.setInt(3, InsPregunta.getIdDicultad());
 			sentencia.execute();
-			System.out.println("Registros insertados satisfactoramente");
 			sentencia.close();
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
 		abrirConexion.desconectar();
 	}
+	
 
 	public void ModificarPregunta(Pregunta modPregunta) {
 		conectarBDaJava conexion  = new conectarBDaJava();
@@ -41,7 +42,6 @@ public class PreguntaBD extends PreguntaAbstract{
 			sentencia.setInt(3,modPregunta.getIdDicultad());
 			sentencia.setInt(4, modPregunta.getIdPregunta());
 			sentencia.execute();
-			System.out.println("Registro modificado satisfactoriamente");
 			sentencia.close();
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -57,7 +57,6 @@ public class PreguntaBD extends PreguntaAbstract{
 					("DELETE FROM pregunta WHERE IdPregunta=?");
 			sentencia.setInt(1, EliPregunta.getIdPregunta());
 			sentencia.execute();
-			System.out.println("Registro eliminado satisfactoriamente");
 			sentencia.close();
 		}catch (SQLException e) {
 			System.out.println(e);
@@ -82,7 +81,6 @@ public class PreguntaBD extends PreguntaAbstract{
 			}
 			
 			sentencia.execute();
-			System.out.println("Registros listados satisfactoriamente");
 			sentencia.close();
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -91,4 +89,25 @@ public class PreguntaBD extends PreguntaAbstract{
 		return mispreguntas;
 	}
 
+	public Pregunta PregEspecifica(int idPregunta) {
+		conectarBDaJava abrirConexion = new conectarBDaJava();
+		abrirConexion.conectarse();
+		try {
+			PreparedStatement sentencia = (PreparedStatement) abrirConexion.getConnection().prepareStatement
+					("SELECT * FROM pregunta WHERE IdPregunta= "+idPregunta);
+			ResultSet resultado = (ResultSet) sentencia.executeQuery();
+			//sentencia.setInt(1, idPregunta);
+			resultado.next();
+			dato = new Pregunta(resultado.getInt("IdPregunta"),resultado.getString("Enunciado"),
+							resultado.getInt("IdCategoria"),resultado.getInt("IdDificultad"));
+			
+			sentencia.execute();
+			sentencia.close();
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		abrirConexion.desconectar();
+		return dato;
+	}
+	
 }
