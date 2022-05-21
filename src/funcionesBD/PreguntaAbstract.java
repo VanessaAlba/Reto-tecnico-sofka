@@ -10,5 +10,6 @@ public abstract class PreguntaAbstract {
 	public abstract void ModificarPregunta(Pregunta modPregunta );
 	public abstract void EliminarPregunta (Pregunta EliPregunta);
 	public abstract ArrayList<Pregunta> ListarPreguntas();
+	public abstract Pregunta PregCategoriaDif (int idCategoria,int idDificultad);
 		
 }

@@ -3,6 +3,6 @@ package funcionesBD;
 import clases.Categoria;
 
 public abstract class CategoriaAbstract {
-	public abstract Categoria ListarCategorias();
+	public abstract Categoria[] ListarCategorias();
 
 }
