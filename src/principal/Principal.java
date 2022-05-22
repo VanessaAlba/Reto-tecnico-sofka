@@ -31,8 +31,8 @@ public class Principal {
 		
 
 		do {
-			System.out.println("Elige una opcion: \n1:Jugar \n2:Resumen \n3:Preguntas "
-					+ "\n4:Respuestas \n5:Listar Categoria \n6:Listar Dificultades \n7:Listar Premios \n8:Salir");
+			System.out.println("\nElige una opcion: \n°°°°°°°°°°°°°°°°°°°\n1:Jugar \n2:Resumen \n3:Preguntas "
+					+ "\n4:Respuestas \n5:Listar Categoria \n6:Listar Dificultades \n7:Listar Premios \n8:Salir\n°°°°°°°°°°°°°°°°°°°");
 			seleccionar = entrada.nextInt();
 			entrada.nextLine();
 			switch (seleccionar) {
@@ -51,13 +51,13 @@ public class Principal {
 
 				do {
 					int categoriaAle = (int) (Math.random() * 5 + 1);
-					Pregunta mipregunta;
-					mipregunta = PreAleatoria(categoriaAle, ronda);
-					ListarResEspecifica(mipregunta.getIdPregunta());
+					Pregunta preguntaBD;
+					preguntaBD = PreAleatoria(categoriaAle, ronda);
+					ListarResEspecifica(preguntaBD.getIdPregunta());
 					responder = entrada.nextInt();
 					entrada.nextLine();
 
-					Correcta = ResPregEspecifica(mipregunta.getIdPregunta(), responder);
+					Correcta = ResPregEspecifica(preguntaBD.getIdPregunta(), responder);
 					if (Correcta == true) {
 						puntajeAcumulado = ObtenerPuntaje(ronda);
 						System.out.println("Respuesta Correcta");
@@ -80,25 +80,25 @@ public class Principal {
 							Correcta = false;
 						}
 						
-					}
-					
-					else {
+					}else {
 						puntajeAcumulado = 0;
 						System.out.println("¡Ups! Respuesta Incorrecta");
 						System.out.println("Tu puntaje acumulado es: " + (puntajeAcumulado));
-						//CrearHistorial(acumulador, ObtenerUltimoJugador());
 						CrearHistorial(puntajeAcumulado, ObtenerUltimoJugador());
-						CrearRondaHistorial(ronda, UltimaPartida());
-						
+						CrearRondaHistorial(ronda, UltimaPartida());	
+						System.out.println("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°");
 					}
-
 				}
 				while (Correcta != false);
 				
 				break;
 			// Resumen
 			case 2:
+				System.out.println("°°°°°°°°°°°°°°°°°°°°°°°°°°°");
+				System.out.println("Nombre Acumulado  Ronda");
+				System.out.println("°°°°°°°°°°°°°°°°°°°°°°°°°°°");
 				ListarResumen();
+				System.out.println("°°°°°°°°°°°°°°°°°°°°°°°°°°°");
 				break;
 			// Preguntas
 
@@ -106,7 +106,8 @@ public class Principal {
 				int submenu1;
 				do {
 					System.out.println(
-							"Elige una opcion: \n1:Insertar Pregunta \n2:Modificar Pregunta \n3:Eliminar Pregunta \n4:Listar preguntas \n5:Atras");
+							"\nElige una opcion: \n°°°°°°°°°°°°°°°°°°° \n1:Insertar Pregunta "
+							+ "\n2:Modificar Pregunta \n3:Eliminar Pregunta \n4:Listar preguntas \n5:Atras\n°°°°°°°°°°°°°°°°°°°");
 					submenu1 = entrada.nextInt();
 					switch (submenu1) {
 					case 1:
@@ -132,7 +133,8 @@ public class Principal {
 				int submenu2;
 				do {
 					System.out.println(
-							"Elige una opcion: \n1:Insertar Respuesta \n2:Modificar Respuesta  \n3:Listar Respestas \n4: Atras");
+							"\nElige una opcion:\n°°°°°°°°°°°°°°°°°°° \n1:Insertar Respuesta \n2:Modificar Respuesta "
+							+ " \n3:Listar Respestas \n4: Atras\n°°°°°°°°°°°°°°°°°°°");
 					submenu2 = entrada.nextInt();
 					switch (submenu2) {
 					case 1:
@@ -163,9 +165,7 @@ public class Principal {
 				break;
 			default:
 				break;
-
 			}
-
 		} while (seleccionar != 8);
 	}
 
@@ -221,7 +221,6 @@ public class Principal {
 			System.out.print(PREGUNTA.get(i).getIdPregunta() + " \t");
 			System.out.print(PREGUNTA.get(i).getEnunciado() + "\t");
 			// System.out.print(PREGUNTA.get(i).getIdCategoria()+"\t");
-			// System.out.print(PREGUNTA.get(i).getIdDicultad()+"\t");
 			System.out.println();
 		}
 	}
@@ -246,7 +245,6 @@ public class Principal {
 			;
 		}
 	}
-
 	public static void ListarPregEspecifica(int numPregunta) {
 		PreguntaBD listarPreg = new PreguntaBD();
 		Pregunta LisPre;
@@ -298,10 +296,8 @@ public class Principal {
 		Respuesta arreglo[];
 		arreglo = mirespuesta.ListarRespuesta(opcion);
 		for (int i = 0; i < arreglo.length; i++) {
-			System.out.print(i + " " + arreglo[i].getIdRespuesta() + " \t");
-			System.out.print(i + " " + arreglo[i].getopcValida() + " \t");
+			//System.out.print(i + " " + arreglo[i].getopcValida() + " \t");
 			System.out.print(i + " " + arreglo[i].getopciones() + " \t");
-			// System.out.print(arreglo[i].getIdPregunta()+" \t");
 			System.out.println();
 		}
 	}
@@ -310,24 +306,22 @@ public class Principal {
 		boolean correcto;
 		Pregunta opcion = new Pregunta();
 		opcion.setIdPregunta(IdPregunta);
-		RespuestaBD mirespuesta = new RespuestaBD();
+		RespuestaBD respuestaBD = new RespuestaBD();
 		Respuesta arreglo[];
-		arreglo = mirespuesta.ListarRespuesta(opcion);
+		arreglo = respuestaBD.ListarRespuesta(opcion);
 		if (arreglo[NumRespuesta].getopcValida().equalsIgnoreCase("si")) {
-			// System.out.println("respuesta correcta");
 			correcto = true;
 		} else {
-			// System.out.println("respuesta incorrecta");
 			correcto = false;
 		}
 		return correcto;
 	}
 
 	public static int ObtenerPuntaje(int NumRonda) {
-		int mipuntaje;
+		int puntajeBD;
 		PremioBD obtener = new PremioBD();
-		mipuntaje = obtener.ObtenerPremio(NumRonda);
-		return mipuntaje;
+		puntajeBD = obtener.ObtenerPremio(NumRonda);
+		return puntajeBD;
 
 	}
 
@@ -368,7 +362,6 @@ public class Principal {
 			System.out.print(dato[i].getIdPremio() + " \t");
 			System.out.print(dato[i].getPuntaje() + " \t");
 			System.out.println(dato[i].getIdRonda() + " \t");
-			// System.out.println();
 		}
 	}
 
