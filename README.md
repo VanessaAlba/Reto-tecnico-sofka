@@ -1,8 +1,8 @@
 PASOS PARA ABRIR EL PROYECTO ECLIPSE
 * Descargar archivo ZIP 
 * Crear un nuevo proyecto en el entorno de desarrollo Eclipse 
-* Elimine las carpetas que se crean al principio del proyecto
-* Pegue el archivo ZIP y descomprimalo
+* Elimine las carpetas que se crean al principio del proyecto 
+* Descomprimir el archivo ZIP y pegarlos los archivos dentro de la carpeta creada
 * Cree una base de datos relacional llamada 'retosoftka' (tenga en cuenta que el nombre de la 
 base de datos debe coincidir con el nombre de la variable bd que se encuentra dentro de la clase
 conectarBDaJava.java)
