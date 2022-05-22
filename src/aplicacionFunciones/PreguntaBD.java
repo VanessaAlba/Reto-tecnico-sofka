@@ -10,7 +10,7 @@ import com.mysql.jdbc.PreparedStatement;
 import ConexionBD.conectarBDaJava;
 
 public class PreguntaBD extends PreguntaAbstract{
-	static ArrayList<Pregunta> mispreguntas;
+	static ArrayList<Pregunta> preguntasBD;
 	static Pregunta dato;
 
 	public void InsertarPregunta(Pregunta InsPregunta) {
@@ -73,10 +73,10 @@ public class PreguntaBD extends PreguntaAbstract{
 			PreparedStatement sentencia = (PreparedStatement) conexion.getConnection().prepareStatement("SELECT * FROM pregunta");
 			ResultSet resultado = (ResultSet) sentencia.executeQuery();
 			
-			 mispreguntas = new ArrayList<Pregunta>();
+			 preguntasBD = new ArrayList<Pregunta>();
 	
 			while(resultado.next()) {
-				mispreguntas.add(new Pregunta(resultado.getInt("IdPregunta"),resultado.getString("Enunciado"),
+				preguntasBD.add(new Pregunta(resultado.getInt("IdPregunta"),resultado.getString("Enunciado"),
 						resultado.getInt("IdCategoria"),resultado.getInt("IdDificultad")));	
 			}
 			
@@ -86,7 +86,7 @@ public class PreguntaBD extends PreguntaAbstract{
 			System.out.println(e);
 		}
 		conexion.desconectar();
-		return mispreguntas;
+		return preguntasBD;
 	}
 
 	public Pregunta PregEspecifica(int idPregunta) {

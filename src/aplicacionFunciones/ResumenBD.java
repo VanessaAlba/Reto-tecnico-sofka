@@ -19,8 +19,10 @@ public class ResumenBD extends ResumenAbstract {
 		conexion.conectarse();
 		try {
 			PreparedStatement sentencia = (PreparedStatement) conexion.getConnection().prepareStatement
-					("SELECT Nombre,Acumulado,idRonda FROM jugador,historial,rondahistorial "
-							+ "WHERE jugador.IdJugador=historial.IdJugador AND historial.IdPartida=rondahistorial.IdPartida;");
+					("SELECT jugador.Nombre,historial.Acumulado,rondahistorial.IdRonda\r\n"
+							+ "FROM historial \r\n"
+							+ "INNER JOIN jugador ON historial.IdJugador=jugador.IdJugador\r\n"
+							+ "INNER JOIN rondahistorial ON historial.IdPartida=rondahistorial.IdPartida;");
 			ResultSet resultado = (ResultSet) sentencia.executeQuery();
 			
 			 resumenBD = new ArrayList<Resumen>();

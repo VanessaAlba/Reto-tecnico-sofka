@@ -12,7 +12,7 @@ import clases.Respuesta;
 import funcionesBD.RespuestaAbstracta;
 
 public class RespuestaBD extends RespuestaAbstracta {
-	static Respuesta[] misrespuestas;
+	static Respuesta[] respuestasBD;
 
 	public void InsertarRespuesta(Respuesta InsRespuesta, int idPregunta) {
 		conectarBDaJava abrirConexion = new conectarBDaJava();
@@ -61,11 +61,11 @@ public class RespuestaBD extends RespuestaAbstracta {
 			ResultSet resultado = (ResultSet) sentencia.executeQuery();
 			//sentencia.setInt(1, NumPregunta.getIdPregunta() );
 			
-			misrespuestas = new Respuesta[4];
+			respuestasBD = new Respuesta[4];
 			int i=0;
 	
 			while(resultado.next()) {
-				misrespuestas[i]=new Respuesta(resultado.getInt("IdRespuesta"),resultado.getString("OpcValida"),
+				respuestasBD[i]=new Respuesta(resultado.getInt("IdRespuesta"),resultado.getString("OpcValida"),
 						resultado.getString("Opciones"),resultado.getInt("IdPregunta"));
 				i++;
 			}
@@ -76,7 +76,7 @@ public class RespuestaBD extends RespuestaAbstracta {
 			System.out.println(e);
 		}
 		conexion.desconectar();
-		return misrespuestas;
+		return respuestasBD;
 	}
 
 

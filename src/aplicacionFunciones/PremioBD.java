@@ -11,7 +11,7 @@ import funcionesBD.PremioAbstract;
 
 public class PremioBD extends PremioAbstract {
 
-	static Premio[] mispremios;
+	static Premio[] premiosBD;
 	static int puntaje; 
 	
 	public Premio[] listarPremio() {
@@ -21,10 +21,10 @@ public class PremioBD extends PremioAbstract {
 			PreparedStatement sentencia = (PreparedStatement) conexion.getConnection().prepareStatement("SELECT * FROM premio");
 			ResultSet resultado = (ResultSet) sentencia.executeQuery();
 			
-			 mispremios = new Premio[5];
+			 premiosBD = new Premio[5];
 			 int i=0;
 			 while(resultado.next()) {
-					mispremios[i]=new Premio(resultado.getInt("IdPremio"),resultado.getInt("Puntaje"),resultado.getInt("IdRonda"));
+					premiosBD[i]=new Premio(resultado.getInt("IdPremio"),resultado.getInt("Puntaje"),resultado.getInt("IdRonda"));
 					i++;
 			}
 			sentencia.execute();
@@ -33,7 +33,7 @@ public class PremioBD extends PremioAbstract {
 			System.out.println(e);
 		}
 		conexion.desconectar();
-		return mispremios;
+		return premiosBD;
 	}
 
 	

@@ -10,7 +10,7 @@ import clases.Dificultad;
 import funcionesBD.DificultadAbstract;
 
 public class DificultadBD extends DificultadAbstract {
-    static Dificultad[] misdificultades;
+    static Dificultad[] dificultadBD;
 	
 	public Dificultad[] ListarDificultad() {
 		conectarBDaJava conexion = new conectarBDaJava();
@@ -19,10 +19,10 @@ public class DificultadBD extends DificultadAbstract {
 			PreparedStatement sentencia = (PreparedStatement) conexion.getConnection().prepareStatement("SELECT * FROM dificultad");
 			ResultSet resultado = (ResultSet) sentencia.executeQuery();
 			
-			 misdificultades = new Dificultad[5];
+			 dificultadBD = new Dificultad[5];
 			 int i=0;
 			 while(resultado.next()) {
-					misdificultades[i]=new Dificultad(resultado.getInt("IdDificultad"),resultado.getString("NomDificultad"));
+					dificultadBD[i]=new Dificultad(resultado.getInt("IdDificultad"),resultado.getString("NomDificultad"));
 					i++;
 			}
 			sentencia.execute();
@@ -31,7 +31,7 @@ public class DificultadBD extends DificultadAbstract {
 			System.out.println(e);
 		}
 		conexion.desconectar();
-		return misdificultades;
+		return dificultadBD;
 	}
 
 }

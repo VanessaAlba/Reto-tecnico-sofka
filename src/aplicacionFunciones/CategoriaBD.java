@@ -10,7 +10,7 @@ import clases.Categoria;
 import funcionesBD.CategoriaAbstract;
 
 public class CategoriaBD extends CategoriaAbstract{
-	static Categoria[] miscategorias;
+	static Categoria[] categoriasBD;
 
 	public Categoria[] ListarCategorias() {
 		conectarBDaJava conexion = new conectarBDaJava();
@@ -19,10 +19,10 @@ public class CategoriaBD extends CategoriaAbstract{
 			PreparedStatement sentencia = (PreparedStatement) conexion.getConnection().prepareStatement("SELECT * FROM categoria");
 			ResultSet resultado = (ResultSet) sentencia.executeQuery();
 			
-			 miscategorias = new Categoria[5];
+			 categoriasBD = new Categoria[5];
 			 int i=0;
 			 while(resultado.next()) {
-					miscategorias[i]=new Categoria(resultado.getInt("IdCategoria"),resultado.getString("NomCategoria"));
+					categoriasBD[i]=new Categoria(resultado.getInt("IdCategoria"),resultado.getString("NomCategoria"));
 					i++;
 			}
 			sentencia.execute();
@@ -31,7 +31,7 @@ public class CategoriaBD extends CategoriaAbstract{
 			System.out.println(e);
 		}
 		conexion.desconectar();
-		return miscategorias;
+		return categoriasBD;
 	}
 
 }
