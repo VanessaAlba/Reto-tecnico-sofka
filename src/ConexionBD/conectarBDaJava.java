@@ -16,7 +16,7 @@ public class conectarBDaJava {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(url, login, password);
 			if (conn != null) {
-				//System.out.println("Conexion a la base de datos " + bd + " esta lista.");
+				
 			}
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -32,7 +32,7 @@ public class conectarBDaJava {
 
 	public void desconectar() {
 		conn = null;
-		//System.out.println("Conexion a la base de datos " + bd + " esta cerrada");
+		
 	}
 
 }
