@@ -9,4 +9,5 @@ conectarBDaJava.java)
 * Importar la base de datos 'retosftka.sql' 
 * El reto se debe ejecutar en consola para esto compile la clase Principal.java y siga las 
 instrucciones del juego
+NOTA: tener en cuenta que el proyecto se desarrollo con el JDK version JavaSE-17
 
